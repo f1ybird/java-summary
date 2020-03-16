@@ -1,6 +1,7 @@
 package synchronizedTest;
 
 public class T {
+
     static volatile int i = 0;
 
     public static void n() {
