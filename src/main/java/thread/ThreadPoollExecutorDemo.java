@@ -11,9 +11,13 @@ import java.util.concurrent.TimeUnit;
  */
 public class ThreadPoollExecutorDemo {
 
+    //核心线程池大小
     private static final int CORE_POOL_SIZE = 5;
+    //最大线程池大小
     private static final int MAX_POOL_SIZE = 10;
-    private static final int QUEUE_CAPACITY = 100;
+    //阻塞队列大小
+    private static final int QUEUE_CAPACITY = 1000;
+    //最大线程池存活时间
     private static final Long KEEP_ALIVE_TIME = 1L;
 
     public static void main(String[] args) {
