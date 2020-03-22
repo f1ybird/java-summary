@@ -1,4 +1,4 @@
-package unsafeTest;
+package unsafe;
 
 import sun.misc.Unsafe;
 
