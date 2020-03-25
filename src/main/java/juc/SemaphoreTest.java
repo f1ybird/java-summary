@@ -1,5 +1,7 @@
 package juc;
 
+import cn.hutool.core.date.DateUtil;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -13,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class SemaphoreTest {
 
     // 请求的数量
-    private static final int THREAD_COUNT = 100;
+    private static final int THREAD_COUNT = 20;
     //核心线程池大小
     private static final int CORE_POOL_SIZE = 5;
     //最大线程池大小
@@ -24,7 +26,7 @@ public class SemaphoreTest {
     private static final Long KEEP_ALIVE_TIME = 1L;
 
     public static void main(String[] args) {
-        Semaphore semaphore = new Semaphore(20);
+        final Semaphore semaphore = new Semaphore(3);
         //自定义线程池
         ThreadPoolExecutor executor = new ThreadPoolExecutor(CORE_POOL_SIZE,
                 MAX_POOL_SIZE,
@@ -37,11 +39,18 @@ public class SemaphoreTest {
             int threadnum = i;
             executor.execute(() -> {
                 try {
-                    //获取一个许可，所以可运行线程数量为20/1=20
-                    semaphore.acquire();
-                    test(threadnum);
-                    //释放许可
-                    semaphore.release();
+//                    //获取一个许可，所以可运行线程数量为20/1=20
+//                    semaphore.acquire();
+//                    test(threadnum);
+//                    //释放许可
+//                    semaphore.release();
+                    if (semaphore.tryAcquire()) {//尝试获取许可，获取失败丢掉后续任务
+                        //获取一个许可，所以可运行线程数量为20/1=20
+                        semaphore.acquire();
+                        test(threadnum);
+                        //释放许可
+                        semaphore.release();
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -55,9 +64,12 @@ public class SemaphoreTest {
 
     }
 
-    public static void test(int threadnum) throws InterruptedException {
-        Thread.sleep(200);// 模拟请求的耗时操作
-        System.out.println("threadnum:" + threadnum);
-        Thread.sleep(200);// 模拟请求的耗时操作
+    public static void test(int threadnum) {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(DateUtil.thisMillsecond() + ": threadnum:" + threadnum);
     }
 }
