@@ -34,4 +34,8 @@ class BooleanLatch {
     public void await() throws InterruptedException {
         sync.acquireSharedInterruptibly(1);
     }
+
+    public static void main(String[] args) {
+        Sync sync = new Sync();
+    }
 }
