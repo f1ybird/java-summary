@@ -1,12 +1,12 @@
 package netty;
 
-import io.netty.bootstrap.ServerBootstrap;
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.*;
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.util.CharsetUtil;
+import netty.io.netty.bootstrap.ServerBootstrap;
+import netty.io.netty.buffer.ByteBuf;
+import netty.io.netty.channel.*;
+import netty.io.netty.channel.nio.NioEventLoopGroup;
+import netty.io.netty.channel.socket.SocketChannel;
+import netty.io.netty.channel.socket.nio.NioServerSocketChannel;
+import netty.io.netty.util.CharsetUtil;
 
 public class HelloNetty {
     public static void main(String[] args) {
