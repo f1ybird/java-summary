@@ -1,13 +1,13 @@
 package netty;
 
-import netty.io.netty.bootstrap.Bootstrap;
-import netty.io.netty.buffer.ByteBuf;
-import netty.io.netty.buffer.Unpooled;
-import netty.io.netty.channel.*;
-import netty.io.netty.channel.nio.NioEventLoopGroup;
-import netty.io.netty.channel.socket.SocketChannel;
-import netty.io.netty.channel.socket.nio.NioSocketChannel;
-import netty.io.netty.util.ReferenceCountUtil;
+import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.*;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.util.ReferenceCountUtil;
 
 public class Client {
     public static void main(String[] args) {
@@ -66,7 +66,7 @@ class ClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         try {
-            ByteBuf buf = (ByteBuf)msg;
+            ByteBuf buf = (ByteBuf) msg;
             System.out.println(buf.toString());
         } finally {
             ReferenceCountUtil.release(msg);

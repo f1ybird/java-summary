@@ -3,6 +3,11 @@ package netty.io.bio;
 import java.io.IOException;
 import java.net.Socket;
 
+/**
+ * @Description: BIO客户端测试
+ * @Author: zhangkai
+ * @Date: 2020/4/1 0:40
+ */
 public class Client {
     public static void main(String[] args) throws IOException {
         Socket s = new Socket("127.0.0.1", 8888);

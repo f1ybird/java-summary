@@ -1,2 +1,4 @@
-# multhread
-多线程知识点整理
+# java知识总结
+
+- 多线程
+- netty

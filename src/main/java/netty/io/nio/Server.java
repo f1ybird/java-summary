@@ -10,7 +10,13 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * @Description: NIO服务端测试
+ * @Author: zhangkai
+ * @Date: 2020/4/1 0:43
+ */
 public class Server {
+
     public static void main(String[] args) throws IOException {
         ServerSocketChannel ssc = ServerSocketChannel.open();
         ssc.socket().bind(new InetSocketAddress("127.0.0.1", 8888));
@@ -20,11 +26,11 @@ public class Server {
         Selector selector = Selector.open();
         ssc.register(selector, SelectionKey.OP_ACCEPT);
 
-        while(true) {
+        while (true) {
             selector.select();
             Set<SelectionKey> keys = selector.selectedKeys();
             Iterator<SelectionKey> it = keys.iterator();
-            while(it.hasNext()) {
+            while (it.hasNext()) {
                 SelectionKey key = it.next();
                 it.remove();
                 handle(key);
@@ -34,27 +40,12 @@ public class Server {
     }
 
     private static void handle(SelectionKey key) {
-        if(key.isAcceptable()) {
+        if (key.isAcceptable()) {
             try {
                 ServerSocketChannel ssc = (ServerSocketChannel) key.channel();
                 SocketChannel sc = ssc.accept();
                 sc.configureBlocking(false);
-                //new Client
-                //
-                //String hostIP = ((InetSocketAddress)sc.getRemoteAddress()).getHostString();
-
-			/*
-			log.info("client " + hostIP + " trying  to connect");
-			for(int i=0; i<clients.size(); i++) {
-				String clientHostIP = clients.get(i).clientAddress.getHostString();
-				if(hostIP.equals(clientHostIP)) {
-					log.info("this client has already connected! is he alvie " + clients.get(i).live);
-					sc.close();
-					return;
-				}
-			}*/
-
-                sc.register(key.selector(), SelectionKey.OP_READ );
+                sc.register(key.selector(), SelectionKey.OP_READ);
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -62,21 +53,20 @@ public class Server {
         } else if (key.isReadable()) { //flip
             SocketChannel sc = null;
             try {
-                sc = (SocketChannel)key.channel();
+                sc = (SocketChannel) key.channel();
                 ByteBuffer buffer = ByteBuffer.allocate(512);
                 buffer.clear();
                 int len = sc.read(buffer);
 
-                if(len != -1) {
+                if (len != -1) {
                     System.out.println(new String(buffer.array(), 0, len));
                 }
-
                 ByteBuffer bufferToWrite = ByteBuffer.wrap("HelloClient".getBytes());
                 sc.write(bufferToWrite);
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                if(sc != null) {
+                if (sc != null) {
                     try {
                         sc.close();
                     } catch (IOException e) {

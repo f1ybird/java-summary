@@ -1,23 +1,25 @@
 package netty.io.bio;
 
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * @Description: BIO服务端测试
+ * @Author: zhangkai
+ * @Date: 2020/4/1 0:39
+ */
 public class Server {
     public static void main(String[] args) throws IOException {
         ServerSocket ss = new ServerSocket();
         ss.bind(new InetSocketAddress("127.0.0.1", 8888));
-        while(true) {
+        while (true) {
             Socket s = ss.accept(); //阻塞方法
 
-            new Thread(() -> {
-                handle(s);
-            }).start();
-        }
+            new Thread(() -> handle(s)).start();
 
+        }
     }
 
     static void handle(Socket s) {
@@ -25,7 +27,6 @@ public class Server {
             byte[] bytes = new byte[1024];
             int len = s.getInputStream().read(bytes);
             System.out.println(new String(bytes, 0, len));
-
             s.getOutputStream().write(bytes, 0, len);
             s.getOutputStream().flush();
         } catch (IOException e) {

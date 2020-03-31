@@ -1,21 +1,21 @@
 package netty;
 
-import netty.io.netty.bootstrap.ServerBootstrap;
-import netty.io.netty.buffer.ByteBuf;
-import netty.io.netty.channel.*;
-import netty.io.netty.channel.nio.NioEventLoopGroup;
-import netty.io.netty.channel.socket.SocketChannel;
-import netty.io.netty.channel.socket.nio.NioServerSocketChannel;
-import netty.io.netty.util.CharsetUtil;
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.*;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.CharsetUtil;
 
 public class HelloNetty {
+
     public static void main(String[] args) {
         new NettyServer(8888).serverStart();
     }
 }
 
 class NettyServer {
-
 
     int port = 8888;
 
@@ -47,8 +47,6 @@ class NettyServer {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
         }
-
-
     }
 }
 
@@ -57,14 +55,10 @@ class Handler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         //super.channelRead(ctx, msg);
         System.out.println("server: channel read");
-        ByteBuf buf = (ByteBuf)msg;
-
+        ByteBuf buf = (ByteBuf) msg;
         System.out.println(buf.toString(CharsetUtil.UTF_8));
-
         ctx.writeAndFlush(msg);
-
         ctx.close();
-
         //buf.release();
     }
 
