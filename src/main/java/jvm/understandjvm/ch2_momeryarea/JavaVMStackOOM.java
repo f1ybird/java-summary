@@ -1,4 +1,4 @@
-package jvm.understandjvm.ch2;
+package jvm.understandjvm.ch2_momeryarea;
 
 /**
  * VM Args：-Xss2M （会卡死系统，谨慎，这时候不妨设大些，请在32位系统下运行）

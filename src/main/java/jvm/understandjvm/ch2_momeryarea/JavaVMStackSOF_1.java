@@ -1,4 +1,4 @@
-package jvm.understandjvm.ch2;
+package jvm.understandjvm.ch2_momeryarea;
 
 
 /**
