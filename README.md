@@ -4,21 +4,26 @@
 - netty
 - jvm
 - 数据结构与算法
--  小柒2012 [秒杀项目](https://gitee.com/52itstyle/spring-boot-seckill/wikis/%E7%A7%92%E6%9D%80)
-    - 单机秒杀
-        - 秒杀一(最low实现) 		错误 超卖 事务提交冲突（记录Id重复）
-        - 秒杀二(程序锁)  		错误 超卖1件商品，幻读问题（Lcok锁与事物冲突的问题）
-        - 秒杀三(AOP程序锁) 		正常 AOP对整个秒杀方法加锁
-        - 秒杀四(数据库悲观锁) 	正常 FOR UPDATE
-        - 秒杀五(数据库悲观锁)    正常 UPDATE锁表 UPDATE seckill  SET number=number-1 WHERE seckill_id=? AND number>0
-        - 秒杀六(数据库乐观锁)	正常 数据库锁最优实现+版本号version（没用到?）
-        - 秒杀柒(进程内队列)      错误 超卖 队列添加正常，提交事务和秒杀一同样问题
-        - 秒杀柒(Disruptor队列)   错误 超卖 disruptor使用有问题
-    - 分布式秒杀
-        - 秒杀一(Rediss分布式锁) 错误 超卖1件商品，幻读问题（Lcok锁与事物冲突的问题）
-        - 秒杀二(zookeeper分布式锁) 未成功测试，zookeeper连接问题
-        - 秒杀三(Redis分布式队列-订阅监听) 正常
-        - 秒杀四(Kafka分布式队列) 正常（类似秒杀三）未成功测试，kafka连接问题
+- 分布式组件
+- 项目
+    - 后台管理系统
+    - 商城
+    - 支付
+    - [秒杀项目](https://gitee.com/52itstyle/spring-boot-seckill/wikis/%E7%A7%92%E6%9D%80)小柒2012 
+        - 单机秒杀
+            - 秒杀一(最low实现) 		错误 超卖 事务提交冲突（记录Id重复）
+            - 秒杀二(程序锁)  		错误 超卖1件商品，幻读问题（Lcok锁与事物冲突的问题）
+            - 秒杀三(AOP程序锁) 		正常 AOP对整个秒杀方法加锁
+            - 秒杀四(数据库悲观锁) 	正常 FOR UPDATE
+            - 秒杀五(数据库悲观锁)    正常 UPDATE锁表 UPDATE seckill  SET number=number-1 WHERE seckill_id=? AND number>0
+            - 秒杀六(数据库乐观锁)	正常 数据库锁最优实现+版本号version（没用到?）
+            - 秒杀柒(进程内队列)      错误 超卖 队列添加正常，提交事务和秒杀一同样问题
+            - 秒杀柒(Disruptor队列)   错误 超卖 disruptor使用有问题
+        - 分布式秒杀
+            - 秒杀一(Rediss分布式锁) 错误 超卖1件商品，幻读问题（Lcok锁与事物冲突的问题）
+            - 秒杀二(zookeeper分布式锁) 未成功测试，zookeeper连接问题
+            - 秒杀三(Redis分布式队列-订阅监听) 正常
+            - 秒杀四(Kafka分布式队列) 正常（类似秒杀三）未成功测试，kafka连接问题
 
 ## Commit图例
 
