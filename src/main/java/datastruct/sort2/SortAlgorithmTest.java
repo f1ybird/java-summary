@@ -1,4 +1,4 @@
-package datastruct.sort;
+package datastruct.sort2;
 
 /**
  * 排序算法 VS

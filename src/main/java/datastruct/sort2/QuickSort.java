@@ -1,4 +1,4 @@
-package datastruct.sort;
+package datastruct.sort2;
 /**
  * 快速排序
  */
