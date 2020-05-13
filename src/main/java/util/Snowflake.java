@@ -139,5 +139,6 @@ public class Snowflake {
         Snowflake idWorker = new Snowflake(0, 0);
         long id = idWorker.nextId();
         System.out.println(id);
+        parseId(id);
     }
 }
