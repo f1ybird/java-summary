@@ -71,6 +71,7 @@ public class Snowflake {
         this.workerId = workerId;
         this.datacenterId = datacenterId;
     }
+
     /**
      * 获得下一个ID (该方法是线程安全的)
      *
@@ -104,6 +105,7 @@ public class Snowflake {
                 | (workerId << workerIdShift) //
                 | sequence;
     }
+
     /**
      * 阻塞到下一个毫秒，直到获得新的时间戳
      *
@@ -117,6 +119,7 @@ public class Snowflake {
         }
         return timestamp;
     }
+
     /**
      * 返回以毫秒为单位的当前时间
      *
@@ -125,11 +128,13 @@ public class Snowflake {
     protected long timeGen() {
         return System.currentTimeMillis();
     }
+
     public static void parseId(long id) {
         long miliSecond = id >>> 22;
         long shardId = (id & (0xFFF << 10)) >> 10;
-        System.err.println("分布式id-"+id+"生成的时间是："+new SimpleDateFormat("yyyy-MM-dd").format(new Date(miliSecond)));
+        System.err.println("分布式id-" + id + "生成的时间是：" + new SimpleDateFormat("yyyy-MM-dd").format(new Date(miliSecond)));
     }
+
     public static void main(String[] args) {
         Snowflake idWorker = new Snowflake(0, 0);
         long id = idWorker.nextId();
