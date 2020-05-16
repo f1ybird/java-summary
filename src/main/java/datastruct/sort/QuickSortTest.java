@@ -85,7 +85,5 @@ public class QuickSortTest {
         if (right > l) {
             quickSort(arr, l, right);
         }
-
-
     }
 }
