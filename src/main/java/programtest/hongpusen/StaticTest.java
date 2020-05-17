@@ -16,15 +16,23 @@ public class StaticTest {
 //        Hello h = new Hello();
 //        h.print();
 //    }
-    public static void main(String[] args) {
-        StaticTest staticTest = new StaticTest();
-        staticTest.getData();
-    }
 
-    public void getData() {
-        Hello h = new Hello();
-        h.print();
-    }
+    //方法1
+//    public static void main(String[] args) {
+//       Hello h = new StaticTest().new Hello();
+//        h.print();
+//    }
+
+    //方法2
+//    public static void main(String[] args) {
+//        StaticTest staticTest = new StaticTest();
+//        staticTest.getData();
+//    }
+
+//    public void getData() {
+//        Hello h = new Hello();
+//        h.print();
+//    }
 
     private class Hello {
 
