@@ -37,10 +37,11 @@ import java.util.Stack;
 public class BracketsIsValid {
 
     public static void main(String[] args) {
-        BracketsIsValid bracketsIsValid = new BracketsIsValid();
+//        BracketsIsValid bracketsIsValid = new BracketsIsValid();
 //        System.out.println(bracketsIsValid.isValid("()[]{}"));
 //        System.out.println(bracketsIsValid.isValid("(((((())))))"));
-        System.out.println(bracketsIsValid.isValid("()()()()"));
+//        System.out.println(bracketsIsValid.isValid("()()()()"));
+
     }
 
     private Map<Character, Character> mappings;
